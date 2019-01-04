@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<bean
+		class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" />
+
+
+	<!-- Mark the setter with @required and don't inject the reference then see 
+		validation at work -->
+	<bean
+		class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor" />
+
+
+	<bean id="tradeService" class="ct.common.spring.example2.TradeService">
+		<!-- See the Setter Method @Resource tag the setter was called -->
+		<!-- <property name="hService" ref="hService" /> -->
+
+	</bean>
+
+	<bean id="hService" class="ct.common.spring.example2.HolidayService">
+		<property name="dtService" ref="inDTService" />
+		<property name="holidayLists">
+			<util:list id="holidayLists" value-type="java.lang.String">
+				<value>06-11-2018</value>
+				<value>09-11-2018</value>
+				<value>21-12-2018</value>
+			</util:list>
+		</property>
+
+	</bean>
+
+
+
+
+	<bean id="usDTService" class="ct.common.spring.example2.USDateService" />
+
+
+	<bean id="inDTService" class="ct.common.spring.example2.INDateService" />
+
+</beans>

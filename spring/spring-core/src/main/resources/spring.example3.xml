@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<bean
+		class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" />
+
+
+	<!-- Mark the setter with @required and don't inject the reference then 
+		see validation at work -->
+	<bean
+		class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor" />
+
+	<!-- DBViewer -->
+
+	<bean class="ct.common.spring.example3.DBViewer" />
+
+
+	<bean id="tradeEntry" class="ct.common.spring.example3.TradeEntry">
+		<property name="tradeRepo" ref="tradeRepo" />
+	</bean>
+
+	<bean id="tradeRepo" class="ct.common.spring.example3.TradeRepository">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
+
+	<!-- This Class reads the properties file from Class path has the ability 
+		to use the key and replace it with the value the pattern is ${key.from.prop.file} -->
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="ignoreResourceNotFound" value="true" />
+		<property name="locations">
+			<list>
+				<value>classpath:prop.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<constructor-arg ref="dataSource" />
+	</bean>
+
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${driverClassName}" />
+		<property name="url" value="${url}" />
+		<property name="username" value="${user.name}" />
+		<property name="password" value="${user.password}" />
+
+	</bean>
+
+	<bean id="advApp" class="ct.common.spring.example3.AdvanceApplication" />
+
+	<bean id="app" class="ct.common.spring.example3.Application" />
+
+
+	<bean id="jmxAttributeSource"
+		class="org.springframework.jmx.export.annotation.AnnotationJmxAttributeSource" />
+
+	<bean id="jmxAssembler"
+		class="org.springframework.jmx.export.assembler.MetadataMBeanInfoAssembler">
+		<property name="attributeSource" ref="jmxAttributeSource" />
+	</bean>
+
+	<!-- will pick up the ObjectName from the annotation -->
+	<bean id="jmxNamingStrategy"
+          class="org.springframework.jmx.export.naming.MetadataNamingStrategy">
+        <property name="attributeSource" ref="jmxAttributeSource"/>
+    </bean>
+
+	<bean id="exporter" class="org.springframework.jmx.export.MBeanExporter"
+		lazy-init="false">
+		<property name="beans">
+			<map>
+				<entry key="bean:name=tradeEntry" value-ref="tradeEntry" />
+			</map>
+		</property>
+	</bean>
+
+
+</beans>
