@@ -45,8 +45,8 @@ public class HolidayService
 	public boolean isValidTradeDate(LocalDate dt)
 	{
 		LocalDate tradeDate = dtService.getTradeDate();
-
-		return tradeDate.equals(dt);
+		List<LocalDate> holidayCal = getHolidayCal();
+		return tradeDate.equals(dt) && !holidayCal.contains(tradeDate);
 	}
 
 	public List<LocalDate> getHolidayCal()
