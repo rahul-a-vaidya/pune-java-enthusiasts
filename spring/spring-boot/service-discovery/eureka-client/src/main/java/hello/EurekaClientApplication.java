@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@EnableDiscoveryClient
-@SpringBootApplication
 /**
  *  <p> http://localhost:8080/service-instances/a-bootiful-client
  * @author nikhil
- *
+ * for EnableDiscoveryClient the auto registry is true
  */
+@EnableDiscoveryClient
+@SpringBootApplication
 public class EurekaClientApplication {
 
     public static void main(String[] args) {

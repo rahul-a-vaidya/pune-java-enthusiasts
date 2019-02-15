@@ -19,7 +19,7 @@ public class HelloPuneEnthusiasts
     @RequestMapping()
     public String home() 
     {
-		return "<b>Hello Pune Enthusiasts</b>  <marquee> Didn't try this in Hello World !  - This is Depricated TAG </marquee>";
+		return "<b>Hello Pune Java Enthusiasts</b>  <marquee> Didn't try this in Hello World !  - This is Depricated TAG </marquee>";
 	}
 
     @RequestMapping("/1")

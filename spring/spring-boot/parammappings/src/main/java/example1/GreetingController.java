@@ -41,8 +41,6 @@ public class GreetingController {
 			@RequestParam(name = "language", required = true, defaultValue = "Hindi") String language, Model model) {
 		model.addAttribute("name", name);
 
-		model.addAttribute("name", name);
-
 		/**
 		 * Add Additional data in Model
 		 */
