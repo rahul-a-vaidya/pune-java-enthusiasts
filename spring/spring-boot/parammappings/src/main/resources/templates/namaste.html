@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Getting Started: Serving Web Content</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<p th:text="'Namaste, ' + ${name} + '!'" />
+
+	<table>
+		<thead>
+			<tr>
+				<th>Topics taken</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="book : ${payLoad}">
+				<td><span th:text="${book}"> Author </span></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
