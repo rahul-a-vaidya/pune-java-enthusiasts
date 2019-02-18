@@ -18,8 +18,8 @@ public class AppRunner implements CommandLineRunner {
 
 	private final BookRepository bookRepository;
 	
-//	public AppRunner(@Qualifier("SimpleBookRepository") BookRepository bookRepository) {
-	public AppRunner(BookRepository bookRepository) {
+public AppRunner(@Qualifier("SimpleBookRepository") BookRepository bookRepository) {
+	//public AppRunner(BookRepository bookRepository) {
 		this.bookRepository = bookRepository;
 	}
 

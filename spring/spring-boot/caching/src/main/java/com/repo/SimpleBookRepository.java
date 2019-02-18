@@ -8,7 +8,7 @@ import com.bo.Book;
 
 
 @Component
-//@Qualifier("SimpleBookRepository")
+@Qualifier("SimpleBookRepository")
 public class SimpleBookRepository implements BookRepository {
 
     @Override

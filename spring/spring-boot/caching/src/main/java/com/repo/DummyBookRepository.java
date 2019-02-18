@@ -18,8 +18,8 @@ import com.bo.Book;
  * @author nikhil
  *
  */
-// @Component
-// @Qualifier("DummyBookRepository")
+@Component
+@Qualifier("DummyBookRepository")
 public class DummyBookRepository implements BookRepository {
 
 	/**

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 //@SpringBootApplication // same as @Configuration @EnableAutoConfiguration @ComponentScan
 /**
  *  @ComponentScan(basePackageClasses = {GreetingController.class})
+ *  @ComponentScan({"example1.HelloPuneEnthusiasts"})
  * Use it the type safe way
  * */
 public class HelloPuneEnthusiasts 

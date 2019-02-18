@@ -37,7 +37,7 @@ public class GreetingController {
 	 * default and required flag work hand in hand.
 	 */
 	@GetMapping("/greetingHindi")
-	public String greeting(@RequestParam(name = "name", required = false, defaultValue = "Duniya") String name,
+	public String greeting(@RequestParam(name = "name", required = true) String name,
 			@RequestParam(name = "language", required = true, defaultValue = "Hindi") String language, Model model) {
 		model.addAttribute("name", name);
 
